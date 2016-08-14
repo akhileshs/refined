@@ -28,7 +28,7 @@ val macroParadiseVersion = "2.1.0"
 val shapelessVersion = "2.3.1"
 val scalaCheckVersion = "1.12.5"
 val scalazVersion = "7.2.4"
-val scodecVersion = "1.9.0"
+val scodecVersion = "1.10.2"
 
 val allSubprojects = List("core", "scalacheck", "scalaz", "scodec")
 val allSubprojectsJVM = allSubprojects.map(_ + "JVM")
@@ -183,7 +183,7 @@ lazy val projectSettings = Seq(
 
 lazy val compileSettings = Seq(
   scalaVersion := "2.11.8",
-  crossScalaVersions := Seq(scalaVersion.value, "2.10.6"),
+  crossScalaVersions := Seq(scalaVersion.value, "2.10.6", "2.12.0-M5"),
   scalacOptions ++= Seq(
     "-deprecation",
     "-encoding", "UTF-8",

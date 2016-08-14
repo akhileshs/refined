@@ -4,6 +4,7 @@
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/fthomas/refined?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Download](https://img.shields.io/maven-central/v/eu.timepit/refined_2.11.svg)][search.maven]
 [![Scaladoc](https://www.javadoc.io/badge/eu.timepit/refined_2.11.svg?color=blue&label=Scaladoc)](https://www.javadoc.io/doc/eu.timepit/refined_2.11)
+[![Scaladex](https://img.shields.io/badge/Scaladex-refined-f26527.svg)](https://index.scala-lang.org/fthomas/refined)
 
 **refined** is a Scala library for refining types with type-level predicates
 which constrain the set of values described by the refined type. It started
@@ -38,11 +39,14 @@ res0: Int Refined Positive = 5
 // Macros can only validate literals because their values are known at
 // compile-time. To validate arbitrary (runtime) values we can use the
 // refineV function:
-scala> refineV[Positive](5)
-res1: Either[String, Int Refined Positive] = Right(5)
 
-scala> refineV[Positive](-5)
-res2: Either[String, Int Refined Positive] = Left(Predicate failed: (-5 > 0).)
+scala> val x = 42 // suppose the value of x is not known at compile-time
+
+scala> refineV[Positive](x)
+res1: Either[String, Int Refined Positive] = Right(42)
+
+scala> refineV[Positive](-x)
+res2: Either[String, Int Refined Positive] = Left(Predicate failed: (-42 > 0).)
 ```
 
 **refined** also contains inference rules for converting between different
@@ -155,7 +159,7 @@ scala> val u1: String Refined Url = "htp://example.com"
 ## Using refined
 
 The latest version of the library is 0.5.0, which is available for Scala and
-[Scala.js][scala.js] version 2.10 and 2.11.
+[Scala.js][scala.js] version 2.10, 2.11, and 2.12.0-M5.
 
 If you're using sbt, add the following to your build:
 
